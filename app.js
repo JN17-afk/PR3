@@ -1,9 +1,10 @@
 // Configuración del Broker MQTT (EMQX Público)
-const BROKER_HOST = "broker.emqx.io";
-const BROKER_PORT = 8884; // Puerto WebSockets para EMQX
+// Configuración Plan B: HiveMQ Público (Conexión Segura)
+const BROKER_HOST = "broker.hivemq.com";
+const BROKER_PORT = 8884; // Puerto seguro de WebSockets de HiveMQ
 const CLIENT_ID = "web_gemelo_digital_" + Math.random().toString(16).substr(2, 8);
 
-// IMPORTANTE: En Paho MQTT para conectar a EMQX, a veces hace falta especificar la ruta
+// Mantenemos la ruta /mqtt
 const client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, "/mqtt", CLIENT_ID);
 
 client.onConnectionLost = onConnectionLost;
@@ -16,7 +17,7 @@ function conectarMQTT() {
     client.connect({
         onSuccess: onConnect,
         onFailure: onFailure,
-        useSSL: true,
+        useSSL: true, // Mantenemos SSL activado
         keepAliveInterval: 60
     });
 }
