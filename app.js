@@ -1,7 +1,7 @@
 // Configuración del Broker MQTT (EMQX Público)
 const BROKER_HOST = "broker.emqx.io";
 const BROKER_PORT = 8884; // Puerto WebSockets para EMQX
-const CLIENT_ID = "web" + Math.random().toString(16).substr(2, 8);
+const CLIENT_ID = "web_gemelo_digital_" + Math.random().toString(16).substr(2, 8);
 
 // IMPORTANTE: En Paho MQTT para conectar a EMQX, a veces hace falta especificar la ruta
 const client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, "/mqtt", CLIENT_ID);
