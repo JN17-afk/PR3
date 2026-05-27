@@ -16,7 +16,7 @@ function conectarMQTT() {
     client.connect({
         onSuccess: onConnect,
         onFailure: onFailure,
-        useSSL: false,
+        useSSL: true,
         keepAliveInterval: 60
     });
 }
