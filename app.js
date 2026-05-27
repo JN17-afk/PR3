@@ -1,6 +1,6 @@
 const BROKER_HOST = "mqtt.dsic.upv.es";
-const BROKER_PORT = 8000; // ¡OJO! Este debe ser el puerto de WebSockets, NO el 1883. (Prueba 9001, 8080 o 8000).
-const CLIENT_ID = "web_gemelo_digital_" + Math.random().toString(16).substr(2, 8);
+const BROKER_PORT = 8080; // ¡OJO! Este debe ser el puerto de WebSockets, NO el 1883. (Prueba 9001, 8080 o 8000).
+const CLIENT_ID = "mqttx_a0edf813" + Math.random().toString(16).substr(2, 8);
 
 const client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, CLIENT_ID);
 
