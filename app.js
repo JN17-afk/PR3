@@ -1,8 +1,10 @@
-const BROKER_HOST = "mqtt.dsic.upv.es";
-const BROKER_PORT = 9001; // ¡OJO! Este debe ser el puerto de WebSockets, NO el 1883. (Prueba 9001, 8080 o 8000).
-const CLIENT_ID = "mqttx_a0edf813" + Math.random().toString(16).substr(2, 8);
+// Configuración del Broker MQTT (EMQX Público)
+const BROKER_HOST = "broker.emqx.io";
+const BROKER_PORT = 8083; // Puerto WebSockets para EMQX
+const CLIENT_ID = "web" + Math.random().toString(16).substr(2, 8);
 
-const client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, CLIENT_ID);
+// IMPORTANTE: En Paho MQTT para conectar a EMQX, a veces hace falta especificar la ruta
+const client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, "/mqtt", CLIENT_ID);
 
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
@@ -12,14 +14,13 @@ conectarMQTT();
 function conectarMQTT() {
     console.log("Intentando conectar al Broker MQTT...");
     client.connect({
-        userName: "giirob",                  // Tu usuario
-        password: "UPV2024",      // <-- ¡PON AQUÍ TU CONTRASEÑA REAL!
         onSuccess: onConnect,
         onFailure: onFailure,
         useSSL: false,
         keepAliveInterval: 60
     });
 }
+
 
 // Qué pasa cuando se conecta con éxito
 function onConnect() {
