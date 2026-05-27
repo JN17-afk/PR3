@@ -1,25 +1,22 @@
-// Configuración del Broker MQTT (Usando HiveMQ Público)
 const BROKER_HOST = "mqtt.dsic.upv.es";
-const BROKER_PORT = 1883; // Puerto WebSockets para navegadores
-// Creamos un ID de cliente único para evitar conflictos de conexión
-const CLIENT_ID = "mqttx_a0edf813" + Math.random().toString(16).substr(2, 8);
+const BROKER_PORT = 9001; // ¡OJO! Este debe ser el puerto de WebSockets, NO el 1883. (Prueba 9001, 8080 o 8000).
+const CLIENT_ID = "web_gemelo_digital_" + Math.random().toString(16).substr(2, 8);
 
-// Inicializar el cliente MQTT usando la librería Paho
 const client = new Paho.MQTT.Client(BROKER_HOST, BROKER_PORT, CLIENT_ID);
 
-// Definir las funciones callback del cliente
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 
-// Conectar al Broker
 conectarMQTT();
 
 function conectarMQTT() {
     console.log("Intentando conectar al Broker MQTT...");
     client.connect({
+        userName: "giirob",                  // Tu usuario
+        password: "UPV2024",      // <-- ¡PON AQUÍ TU CONTRASEÑA REAL!
         onSuccess: onConnect,
         onFailure: onFailure,
-        useSSL: false, // El broker público de HiveMQ en el puerto 8000 no usa SSL nativo en algunas redes
+        useSSL: false,
         keepAliveInterval: 60
     });
 }
