@@ -54,7 +54,30 @@
                 <p id="txt-alerta-hardware" class="value-text">Ninguna</p>
             </div>
         </section>
+        <section class="card">
+    <h2>Realizar Nuevo Pedido</h2>
+    <p>Configura las propiedades del pedido para la simulación.</p>
+    
+    <div style="margin-top: 15px;">
+        <label for="select-tipo" style="display:block; margin-bottom:5px; color:#a0aec0;">Tipo de Pedido:</label>
+        <select id="select-tipo" style="width:100%; padding:10px; background:#121824; color:white; border:1px solid #2d3748; border-radius:6px;">
+            <option value="adulto">Adulto</option>
+            <option value="niño">Niño</option>
+        </select>
+    </div>
 
+    <div style="margin-top: 15px;">
+        <label for="select-estado" style="display:block; margin-bottom:5px; color:#a0aec0;">Estado Inicial:</label>
+        <select id="select-estado" style="width:100%; padding:10px; background:#121824; color:white; border:1px solid #2d3748; border-radius:6px;">
+            <option value="pendiente">Pendiente</option>
+            <option value="en proceso">En proceso</option>
+        </select>
+    </div>
+
+    <button id="btn-enviar-pedido" onclick="crearYEnviarPedido()" style="margin-top: 20px; width: 100%; background-color: var(--success-color);">
+        Enviar Pedido
+    </button>
+    </section>
     </main>
 
     <script src="app.js"></script>

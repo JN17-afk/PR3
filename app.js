@@ -93,3 +93,24 @@ function enviarComando(subTopic, valor) {
     client.send(message);
     console.log(`Mensaje enviado -> Topic: ${topicCompleto} | Valor: ${valor}`);
 }
+function crearYEnviarPedido() {
+    // 1. Recogemos los valores seleccionados en la interfaz de la web
+    const tipoPedido = document.getElementById("select-tipo").value;
+    const estadoPedido = document.getElementById("select-estado").value;
+
+    // 2. Creamos un objeto de JavaScript con los datos
+    const objetoPedido = {
+        tipo: tipoPedido,
+        estado: estadoPedido,
+        timestamp: new Date().toISOString() // Añadimos la hora del pedido por si te hace falta
+    };
+
+    // 3. Convertimos el objeto a una cadena de texto JSON para poder enviarlo por MQTT
+    const mensajeJSON = JSON.stringify(objetoPedido);
+
+    // 4. Enviamos el mensaje al subtopic 'pedido'
+    // Recuerda que la función enviarComando le añade automáticamente el prefijo "proyecto/gemelodigital/"
+    enviarComando("pedido", mensajeJSON);
+    
+    console.log("Pedido enviado con éxito:", mensajeJSON);
+}
