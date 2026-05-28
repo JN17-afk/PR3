@@ -110,7 +110,9 @@ function crearYEnviarPedido() {
 
     // 4. Enviamos el mensaje al subtopic 'pedido'
     // Recuerda que la función enviarComando le añade automáticamente el prefijo "proyecto/gemelodigital/"
-    enviarComando("pedido", mensajeJSON);
+    const message = new Paho.MQTT.Message(mensajeJSON); 
+    message.destinationName = "pedido"; // Topic limpio, sin prefijos
     
+    client.send(message);   
     console.log("Pedido enviado con éxito:", mensajeJSON);
 }
